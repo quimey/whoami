@@ -7,6 +7,7 @@ class Player(models.Model):
 
 class Game(models.Model):
     name = models.CharField(max_length=40)
+    secret = models.CharField(max_length=40)
 
 
 class Character(models.Model):
