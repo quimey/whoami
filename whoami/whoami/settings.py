@@ -125,4 +125,3 @@ STATIC_URL = '/static/'
 if 'TESTING' not in os.environ:
     import django_heroku
     django_heroku.settings(locals())
-

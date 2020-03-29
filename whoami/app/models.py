@@ -18,7 +18,7 @@ class Character(models.Model):
     description = models.TextField()
 
 
-class GamePlayers(models.Model):
+class GamePlayer(models.Model):
     game = models.ForeignKey(
         Game, related_name='players', on_delete=models.CASCADE
     )
@@ -27,7 +27,7 @@ class GamePlayers(models.Model):
     )
 
 
-class GameAssignations(models.Model):
+class GameAssignation(models.Model):
     game = models.ForeignKey(
         Game, related_name='characters', on_delete=models.CASCADE
     )
@@ -37,3 +37,23 @@ class GameAssignations(models.Model):
     character = models.ForeignKey(
         Character, related_name='characters', on_delete=models.CASCADE
     )
+
+
+class GameQuestion(models.Model):
+    game = models.ForeignKey(
+        Game, related_name='questions', on_delete=models.CASCADE
+    )
+    player = models.ForeignKey(
+        Player, related_name='questions', on_delete=models.CASCADE
+    )
+    text = models.TextField()
+
+
+class GameAnswer(models.Model):
+    question = models.ForeignKey(
+        GameQuestion, related_name='answers', on_delete=models.CASCADE
+    )
+    player = models.ForeignKey(
+        Player, related_name='answers', on_delete=models.CASCADE
+    )
+    answer = models.BooleanField()
